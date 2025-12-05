@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astin Chettiar | Portfolio</title>
+    <meta name="description" content="Portfolio of Astin Chettiar - Engineering Student, Creator, and Explorer">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --background: #0a0f1a;
+            --foreground: #f8fafc;
+            --card: #111827;
+            --primary: #2dd4bf;
+            --primary-dark: #0d9488;
+            --secondary: #1e293b;
+            --muted: #64748b;
+            --border: #1e3a5f;
+            --glass-bg: rgba(17, 24, 39, 0.7);
+            --glass-border: rgba(30, 58, 95, 0.5);
+            --gradient-primary: linear-gradient(135deg, #2dd4bf 0%, #0ea5e9 100%);
+            --glow-primary: 0 0 40px rgba(45, 212, 191, 0.3);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0.75rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--foreground);
+        }
+
+        .nav-cta {
+            background: var(--gradient-primary);
+            color: var(--background) !important;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+            box-shadow: var(--glow-primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--foreground);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+
+        .hero-orb-1 {
+            top: 25%;
+            left: 25%;
+            width: 300px;
+            height: 300px;
+            background: rgba(45, 212, 191, 0.2);
+        }
+
+        .hero-orb-2 {
+            bottom: 25%;
+            right: 25%;
+            width: 250px;
+            height: 250px;
+            background: rgba(14, 165, 233, 0.2);
+            animation-delay: 1s;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .profile-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--glass-border);
+            box-shadow: var(--glow-primary);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .online-indicator {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            background: #22c55e;
+            border-radius: 50%;
+            border: 4px solid var(--background);
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-college {
+            font-size: 0.875rem;
+            color: rgba(100, 116, 139, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--foreground);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: rgba(45, 212, 191, 0.2);
+            border-color: rgba(45, 212, 191, 0.5);
+            box-shadow: var(--glow-primary);
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(100, 116, 139, 0.5);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        /* About Section */
+        .section {
+            padding: 5rem 1rem;
+        }
+
+        .section-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .about-card {
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-card p {
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .interest-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .interest-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow-primary);
+        }
+
+        .interest-tag i {
+            color: var(--primary);
+        }
+
+        /* Education Section */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--primary-dark), rgba(45, 212, 191, 0.2));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2rem;
+            top: 1.5rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            box-shadow: var(--glow-primary);
+        }
+
+        .timeline-dot.current {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .timeline-card {
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--glow-primary);
+        }
+
+        .timeline-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .timeline-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--muted);
+        }
+
+        .timeline-icon.current {
+            background: rgba(45, 212, 191, 0.2);
+            color: var(--primary);
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .current-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: rgba(45, 212, 191, 0.2);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-period {
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+
+        /* Contact Section */
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.2) 0%, rgba(14, 165, 233, 0.2) 100%);
+            padding: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(45, 212, 191, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .chat-info h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .chat-status {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .chat-status-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .chat-messages {
+            height: 320px;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .message {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .message-avatar.bot {
+            background: rgba(45, 212, 191, 0.2);
+            color: var(--primary);
+        }
+
+        .message-avatar.user {
+            background: rgba(14, 165, 233, 0.2);
+            color: #0ea5e9;
+        }
+
+        .message-bubble {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            font-size: 0.875rem;
+        }
+
+        .message.user .message-bubble {
+            background: rgba(45, 212, 191, 0.15);
+            border-color: rgba(45, 212, 191, 0.3);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 0.75rem 1rem;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .chat-btn {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 0.5rem;
+            color: var(--background);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .chat-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input-field {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: var(--secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.5rem;
+            color: var(--foreground);
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+        }
+
+        .chat-input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .send-btn {
+            padding: 0.75rem;
+            background: var(--primary);
+            border: none;
+            border-radius: 0.5rem;
+            color: var(--background);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .send-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .complete-message {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.875rem;
+            padding: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--primary);
+            background: rgba(45, 212, 191, 0.1);
+        }
+
+        .footer-credit {
+            color: var(--muted);
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .footer-credit i {
+            color: #ef4444;
+        }
+
+        .footer-copyright {
+            color: rgba(100, 116, 139, 0.6);
+            font-size: 0.75rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(45, 212, 191, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(45, 212, 191, 0.5); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            
+            .hero h1 { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1rem; }
+            
+            .section-header h2 { font-size: 2rem; }
+            
+            .about-card { padding: 1.5rem; }
+            
+            .footer-container {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2rem; }
+            .profile-image { width: 140px; height: 140px; }
+            .interests { gap: 0.5rem; }
+            .interest-tag { padding: 0.5rem 1rem; font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">AC</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+                <a href="#contact" class="nav-cta">Get in Touch</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        
+        <div class="hero-content">
+            <div class="profile-wrapper">
+                <img src="pfp.jpg" 
+                     alt="Astin Chettiar" class="profile-image">
+                <div class="online-indicator"></div>
+            </div>
+            
+            <h1><span class="gradient-text">Astin Chettiar</span></h1>
+            <p class="hero-subtitle">Engineering Student • Creator • Explorer</p>
+            <p class="hero-college">Fr. Conceicao College of Engineering</p>
+            
+            <div class="social-links">
+                <a href="https://github.com/astincc20" target="_blank" class="social-icon">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/astin-chettiar-30886a385/" target="_blank" class="social-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.instagram.com/astin_.chettiar/" target="_blank" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>About <span class="gradient-text">Me</span></h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="about-card glass-card">
+                <p>Hey there! I'm Astin Chettiar, a passionate engineering student currently pursuing my dreams at Fr. Conceicao College of Engineering. When I'm not buried in textbooks or coding projects, you'll find me pushing my limits at the gym, chasing that perfect physique and mental clarity. There's something incredibly satisfying about the discipline and dedication that fitness demands—it mirrors the same determination I bring to my academic pursuits.</p>
+                <p>Beyond academics and fitness, I'm an absolute enthusiast when it comes to bikes and cars—the roar of an engine and the freedom of the open road never fail to excite me. Music is my constant companion, whether I'm studying, working out, or just unwinding after a long day. I'm also an avid Netflix binger who loves getting lost in compelling stories and cinematic masterpieces. At heart, I'm an explorer who believes life is too short to stay in one place; every new experience, every new adventure adds a chapter to my story. Connect with me, and let's create something amazing together!</p>
+            </div>
+            
+            <div class="interests">
+                <div class="interest-tag glass-card">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>Fitness</span>
+                </div>
+                <div class="interest-tag glass-card">
+                    <i class="fas fa-car"></i>
+                    <span>Bikes & Cars</span>
+                </div>
+                <div class="interest-tag glass-card">
+                    <i class="fas fa-music"></i>
+                    <span>Music</span>
+                </div>
+                <div class="interest-tag glass-card">
+                    <i class="fas fa-tv"></i>
+                    <span>Netflix</span>
+                </div>
+                <div class="interest-tag glass-card">
+                    <i class="fas fa-compass"></i>
+                    <span>Explorer</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>My <span class="gradient-text">Journey</span></h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot current"></div>
+                    <div class="timeline-card glass-card">
+                        <div class="timeline-card-header">
+                            <div class="timeline-icon current">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <span class="current-badge">Current</span>
+                                <h3>Fr. Conceicao College of Engineering</h3>
+                                <p class="timeline-period">2025 - Present</p>
+                                <p class="timeline-desc">Currently pursuing Engineering</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card glass-card">
+                        <div class="timeline-card-header">
+                            <div class="timeline-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Sudarshan Jr. College</h3>
+                                <p class="timeline-period">2023 - 2025</p>
+                                <p class="timeline-desc">Higher Secondary Education</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card glass-card">
+                        <div class="timeline-card-header">
+                            <div class="timeline-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Ryan International School</h3>
+                                <p class="timeline-period">2010 - 2023</p>
+                                <p class="timeline-desc">Primary & Secondary Education</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Let's <span class="gradient-text">Connect</span></h2>
+                <div class="section-divider"></div>
+                <p style="color: var(--muted); margin-top: 1rem;">Chat with my assistant bot to send me a message</p>
+            </div>
+            
+            <div class="chat-container glass-card">
+                <div class="chat-header">
+                    <div class="chat-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="chat-info">
+                        <h3>Astin's Assistant</h3>
+                        <p class="chat-status">
+                            <span class="chat-status-dot"></span>
+                            Online
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message">
+                        <div class="message-avatar bot">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-bubble">
+                            Hey there! 👋 I'm Astin's assistant bot. Want to send him a message? I'll make sure he gets it!
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input" id="chatInput">
+                    <button class="chat-btn" id="startBtn" onclick="startConversation()">
+                        <i class="fas fa-sparkles"></i>
+                        Start Conversation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-social">
+                <a href="https://github.com/astincc20" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/astin-chettiar-30886a385/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/astin_.chettiar/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="footer-credit">Made with <i class="fas fa-heart"></i> by Astin Chettiar</p>
+            <p class="footer-copyright">© 2024 All rights reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Chat Bot Logic
+        let currentStep = 'initial';
+        let formData = { name: '', email: '', message: '' };
+
+        function addMessage(type, content) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.innerHTML = `
+                <div class="message-avatar ${type}">
+                    <i class="fas fa-${type === 'bot' ? 'robot' : 'user'}"></i>
+                </div>
+                <div class="message-bubble">${content}</div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTyping() {
+            const chatMessages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typing';
+            typingDiv.className = 'message';
+            typingDiv.innerHTML = `
+                <div class="message-avatar bot">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-bubble">
+                    <div class="typing-indicator">
+                        <span class="typing-dot"></span>
+                        <span class="typing-dot"></span>
+                        <span class="typing-dot"></span>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typing');
+            if (typing) typing.remove();
+        }
+
+        function updateChatInput() {
+            const chatInput = document.getElementById('chatInput');
+            
+            if (currentStep === 'complete') {
+                chatInput.innerHTML = `<p class="complete-message">Thanks for reaching out! Feel free to connect on social media too 🚀</p>`;
+                return;
+            }
+
+            let placeholder = '';
+            let inputType = 'text';
+            
+            switch (currentStep) {
+                case 'name':
+                    placeholder = 'Your name...';
+                    break;
+                case 'email':
+                    placeholder = 'Your email...';
+                    inputType = 'email';
+                    break;
+                case 'message':
+                    placeholder = 'Type your message...';
+                    break;
+            }
+
+            chatInput.innerHTML = `
+                <div class="input-group">
+                    <input type="${inputType}" id="userInput" class="chat-input-field" placeholder="${placeholder}" onkeypress="handleKeyPress(event)">
+                    <button class="send-btn" onclick="handleSubmit()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            `;
+            document.getElementById('userInput').focus();
+        }
+
+        function startConversation() {
+            addMessage('user', "Yes, I'd like to send a message!");
+            showTyping();
+            
+            setTimeout(() => {
+                hideTyping();
+                addMessage('bot', "Awesome! Let's start with your name. What should I call you?");
+                currentStep = 'name';
+                updateChatInput();
+            }, 800);
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                handleSubmit();
+            }
+        }
+
+        function handleSubmit() {
+            const input = document.getElementById('userInput');
+            const value = input.value.trim();
+            
+            if (!value) return;
+
+            switch (currentStep) {
+                case 'name':
+                    formData.name = value;
+                    addMessage('user', value);
+                    showTyping();
+                    
+                    setTimeout(() => {
+                        hideTyping();
+                        addMessage('bot', `Nice to meet you, ${value}! 😊 What's your email address so Astin can get back to you?`);
+                        currentStep = 'email';
+                        updateChatInput();
+                    }, 800);
+                    break;
+
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        alert('Please enter a valid email address');
+                        return;
+                    }
+                    formData.email = value;
+                    addMessage('user', value);
+                    showTyping();
+                    
+                    setTimeout(() => {
+                        hideTyping();
+                        addMessage('bot', "Perfect! Now, what message would you like to send to Astin? 💬");
+                        currentStep = 'message';
+                        updateChatInput();
+                    }, 800);
+                    break;
+
+                case 'message':
+                    formData.message = value;
+                    addMessage('user', value);
+                    showTyping();
+                    
+                    setTimeout(() => {
+                        hideTyping();
+                        addMessage('bot', `Thank you, ${formData.name}! 🎉 Your message has been sent. Astin will get back to you at ${formData.email} as soon as possible!`);
+                        currentStep = 'complete';
+                        updateChatInput();
+                        
+                        // Here you would typically send the data to a server
+                        console.log('Form submitted:', formData);
+                    }, 1500);
+                    break;
+            }
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item, .about-card, .interest-tag').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
